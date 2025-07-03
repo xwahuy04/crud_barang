@@ -24,7 +24,7 @@
         
       </div>
 
-      <div class="d-lg-flex align-items-center gap-2">
+      {{-- <div class="d-lg-flex align-items-center gap-2">
         <h3 class="text-white mb-2 mb-lg-0 fs-5 text-center">Check Flexy Premium Version</h3>
         <div class="d-flex align-items-center justify-content-center gap-2">
           
@@ -37,7 +37,7 @@
             </a>
           </div>
         </div>
-      </div>
+      </div> --}}
 
     </div>
     <!-- Sidebar Start -->

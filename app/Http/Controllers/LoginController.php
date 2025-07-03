@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function showLoginForm()
     {
-        return view('index');
+        return view('login');
     }
 
     public function login(Request $request)
@@ -26,19 +26,13 @@ class LoginController extends Controller
         if($user){
             if(Hash::check($request->password, $user->password)){
                 $request->session()->put('loginId', $user->id);
-                return redirect('/admin');
+                return redirect('/admin')->with('success', 'Login successful!');
             } else {
-                return back()->with('fail','Password not match!');
+                return back()->with('error','Password not match!');
             }
         } else {
-            return back()->with('fail','This email is not register.');
-        }     
-
-        // if (Auth::attempt($request->only('email', 'password'))) {
-        //     return redirect()->route('admin.dashboard');
-        // }
-
-        // return redirect()->back()->withErrors(['email' => 'Invalid credentials']);
+            return back()->with('error','This email is not register.');
+        }
     }
 
    public function logout(Request $request)

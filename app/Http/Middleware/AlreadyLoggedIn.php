@@ -15,8 +15,8 @@ class AlreadyLoggedIn
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Session()->has('loginId') && (url('login') == $request->url())){
-            return back();
+        if(Session()->has('loginId') && (url('/') == $request->url())){
+            return redirect('/admin');
         }
         return $next($request);
     }

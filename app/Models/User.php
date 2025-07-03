@@ -63,4 +63,9 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    public function barang()
+{
+    return $this->hasMany(Barang::class, 'user_id');
+}
+
 }
