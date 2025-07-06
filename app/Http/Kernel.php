@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
 
      protected $routeMiddleware = [
         'isLoggedIn' => \App\Http\Middleware\AuthCheck::class,
-        'alreadyLoggedIn' => \App\Http\Middleware\AlreadyLoggedIn::class,
+        'adminRedirect' => \App\Http\Middleware\AdminRedirect::class,
+        'supervisorCheck' => \App\Http\Middleware\SupervisiorCheck::class,
     ];
 }

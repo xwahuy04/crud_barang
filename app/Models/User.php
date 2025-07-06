@@ -43,29 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function stok_masuk()
-    {
-        return $this->hasMany(StokMasuk::class, 'user_id');
-    }
 
-    public function stok_keluar()
-    {
-        return $this->hasMany(StokKeluar::class, 'user_id');
-    }
-
-    public function riwayat_stok()
-    {
-        return $this->hasMany(RiwayatStok::class, 'user_id');
-    }
 
      public function isAdmin()
     {
         return $this->role === 'admin';
     }
 
-    public function barang()
-{
-    return $this->hasMany(Barang::class, 'user_id');
-}
 
 }

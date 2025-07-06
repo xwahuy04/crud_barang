@@ -14,28 +14,42 @@
             <table class="table table-striped">
                 <thead>
                     <tr class="text-center">
+                        <th>Gambar</th>
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Deskripsi</th>
                         <th>Kategori</th>
-                        <th>Stok</th>
-                        <th>Ditambahkan Oleh</th>
+                        <th>Stok Awal</th>
+                        <th>Stok Saat Ini</th>
+                        {{-- <th>Ditambahkan Oleh</th> --}}
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($barangs as $barang)
                         <tr class="text-center">
+                            <td>
+                                <img src="{{ $barang->gambar_url }}" alt="{{ $barang->nama_barang }}" class="img-thumbnail"
+                                    style="max-width: 60px; max-height: 60px;">
+                            </td>
                             <td>{{ $barang->kode_barang }}</td>
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->deskripsi }}</td>
                             <td>{{ $barang->kategori->nama_kategori }}</td>
-                            <td>{{ $barang->stok }}</td>
-                            <td>{{ $barang->user->name }}</td>
+                            <td>{{ $barang->stok_awal }}</td>
+                            <td class="
+                                @if ($barang->stok_saat_ini > $barang->stok_awal) text-green-600 dark:text-green-400
+                                @elseif($barang->stok_saat_ini < $barang->stok_awal)
+                                    text-red-600 dark:text-red-400
+                                @else
+                                    text-gray-600 dark:text-gray-300 @endif">
+                                {{ $barang->stok_saat_ini }}
+                            </td>
+                            {{-- <td>{{ $barang->user->name }}</td> --}}
                             <td class="text-center">
                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                    action="{{ route('barang.destroy', $barang->id) }}" method="POST">
-                                    <a href="{{ route('barang.edit', $barang->id) }}"
+                                    action="{{ route('barang.destroy', $barang->kode_barang) }}" method="POST">
+                                    <a href="{{ route('barang.edit', $barang->kode_barang) }}"
                                         class="btn btn-sm btn-primary">EDIT</a>
                                     @csrf
                                     @method('DELETE')

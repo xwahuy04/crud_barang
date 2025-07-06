@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('barang', function (Blueprint $table) {
-            $table->dropColumn('satuan');
-        });
+         Schema::table('users', function (Blueprint $table) {
+        $table->enum('role', ['admin', 'supervisor', 'user'])->default('user')->change();
+    });
     }
 
     /**
@@ -21,8 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('barang', function (Blueprint $table) {
-              $table->integer('satuan')->nullable(false)->default(0);
+        Schema::table('users', function (Blueprint $table) {
+            $table->enum('role', ['admin', 'user', 'supplier'])->default('user');
+            
         });
     }
 };

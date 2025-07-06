@@ -10,15 +10,13 @@ use App\Models\Kategori;
 class Barang extends Model
 {
     use HasFactory;
+
     protected $table = 'barang';
-    protected $fillable = [
-        'kode_barang',
-        'nama_barang',
-        'deskripsi',
-        'kategori_id',
-        'stok',
-        'user_id'
-    ];
+    protected $primaryKey = 'kode_barang';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = ['kode_barang', 'nama_barang', 'deskripsi', 'kategori_id', 'stok_awal', 'gambar'];
 
     public function kategori()
     {
@@ -27,18 +25,33 @@ class Barang extends Model
 
     public function stok_masuk()
     {
-        return $this->hasMany(StokMasuk::class, 'barang_id');
+        return $this->hasMany(StokMasuk::class, 'kode_barang_id', 'kode_barang');
     }
 
     public function stok_keluar()
     {
-        return $this->hasMany(StokKeluar::class, 'barang_id');
+        return $this->hasMany(StokKeluar::class, 'kode_barang_id', 'kode_barang');
     }
 
-    public function user()
+    public function riwayatStok()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasMany(RiwayatStok::class, 'kode_barang_id', 'kode_barang')
+        ->orderBy('created_at', 'desc');
     }
 
-   
+
+    public function getStokSaatIniAttribute()
+    {
+        $stok_masuk = $this->stok_masuk()->sum('jumlah');
+        $stok_keluar = $this->stok_keluar()->sum('jumlah');
+        return $this->stok_awal + $stok_masuk - $stok_keluar;
+    }
+
+    public function getGambarUrlAttribute()
+    {
+        if ($this->gambar) {
+            return asset('images/' . $this->gambar);
+        }
+        return asset('images/default-image.png');
+    }
 }

@@ -12,13 +12,19 @@ return new class extends Migration {
     {
         Schema::create('riwayat_stok', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kode_barang_id')->constrained('barang')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('kode_barang_id');
+            $table->foreign('kode_barang_id')->references('kode_barang')->on('barang')->onDelete('cascade');
             $table->enum('jenis_transaksi', ['masuk', 'keluar']);
             $table->integer('jumlah');
             $table->integer('stok_sebelum');
             $table->integer('stok_sesudah');
             $table->text('keterangan')->nullable();
+            $table->foreignId('stok_masuk_id')->nullable()->constrained('stok_masuk')->onDelete('cascade');
+            $table->foreignId('stok_keluar_id')->nullable()->constrained('stok_keluar')->onDelete('cascade');
+
+            $table->index(['kode_barang_id', 'jenis_transaksi', 'created_at']);
+
+
             $table->timestamps();
         });
     }

@@ -11,7 +11,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $users = User::all();
+        return view('admin.dashboard', compact('users'));
     }
 
     public function user()
@@ -24,29 +25,28 @@ class AdminController extends Controller
         $users = User::all();
         return view('admin.user.index', compact('users'));
     }
+ public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+        ]);
 
-   public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|min:8|confirmed',
-    ]);
-
-    try {
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user',
         ]);
 
-        if($user) {
-            return redirect()->route('user')->with('success', 'User berhasil ditambahkan');
-        } else {
-            return back()->with('fail', 'Gagal menambahkan user');
-        }
-    } catch (\Exception $e) {
-        return back()->with('fail', 'Error: '.$e->getMessage());
+        return redirect()->route('user')->with('success', 'User created successfully');
     }
-}
+
+    public function destroy($id)
+    {
+        User::destroy($id);
+        return redirect()->route('user')->with('success', 'User deleted successfully');
+    }
+
 }

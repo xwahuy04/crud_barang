@@ -4,9 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
-class AlreadyLoggedIn
+class SupervisiorCheck
 {
     /**
      * Handle an incoming request.
@@ -15,8 +16,8 @@ class AlreadyLoggedIn
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Session()->has('loginId') && (url('/') == $request->url())){
-            return redirect('/admin');
+        if (!Session::has('userRole') || Session::get('userRole') !== 'supervisor') {
+            return redirect('/login')->with('error', 'Anda tidak memiliki akses supervisor');
         }
         return $next($request);
     }
