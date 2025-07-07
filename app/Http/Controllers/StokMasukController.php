@@ -78,9 +78,6 @@ class StokMasukController extends Controller
                 'keterangan' => $validated['keterangan'],
             ]);
 
-            $barang = Barang::find($validated['kode_barang_id']);
-            $barang->stok += $validated['jumlah']; 
-            $barang->save();
 
             return redirect()->route('stok-masuk')->with('success', 'Stok masuk berhasil dicatat');
         } catch (\Exception $e) {
@@ -93,11 +90,7 @@ class StokMasukController extends Controller
         if (session('userRole') !== 'admin') {
             return redirect()->back()->with('error', 'Akses ditolak');
         }
-
         $stokMasuk = StokMasuk::findOrFail($id);
-        $barang = Barang::find($stokMasuk->kode_barang_id);
-$barang->stok -= $stokMasuk->jumlah;
-$barang->save();
         $stokMasuk->delete();
 
         return redirect()->route('stok-masuk')->with('success', 'Stok masuk berhasil dihapus');

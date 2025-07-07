@@ -36,16 +36,10 @@
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->deskripsi }}</td>
                             <td>{{ $barang->kategori->nama_kategori }}</td>
-                            <td>{{ $barang->stok }}</td>
-                            <td class="
-                                @if ($barang->stok_saat_ini > $barang->stok_awal) text-green-600 dark:text-green-400
-                                @elseif($barang->stok_saat_ini < $barang->stok_awal)
-                                    text-red-600 dark:text-red-400
-                                @else
-                                    text-gray-600 dark:text-gray-300 @endif">
+                            <td>{{ $barang->stok_awal }}</td>
+                            <td>
                                 {{ $barang->stok_saat_ini }}
                             </td>
-                            {{-- <td>{{ $barang->user->name }}</td> --}}
                             <td class="text-center">
                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                     action="{{ route('barang.destroy', $barang->kode_barang) }}" method="POST">

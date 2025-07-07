@@ -45,7 +45,7 @@ protected static function booted()
             'keterangan' => $stokMasuk->keterangan,
             'stok_masuk_id' => $stokMasuk->id,
             'stok_keluar_id' => null,
-            'created_at' => $stokMasuk->tanggal_masuk, // Gunakan tanggal masuk
+            'created_at' => $stokMasuk->tanggal_masuk, 
             'updated_at' => now()
         ]);
 

@@ -66,9 +66,8 @@ class StokKeluarController extends Controller
         ]);
 
         try {
-            $barang = Barang::find($validated['kode_barang_id']);
-            if ($barang->stok < $validated['jumlah']) {
-                return back()->with('error', 'Stok tidak mencukupi! Stok tersedia: ' . $barang->stok);
+            if ($barang->getStokSaatIniAttribute() < $validated['jumlah']) {
+            return back()->with('error', 'Stok tidak mencukupi! Stok tersedia: ' . $barang->getStokSaatIniAttribute());
             }
 
             $stokKeluar = StokKeluar::create([
@@ -79,9 +78,6 @@ class StokKeluarController extends Controller
                 'tanggal_keluar' => $validated['tanggal_keluar'],
                 'keterangan' => $validated['keterangan'],
             ]);
-
-            $barang->stok -= $validated['jumlah'];
-            $barang->save();
 
             return redirect()->route('stok-keluar')->with('success', 'Stok keluar berhasil dicatat');
         } catch (\Exception $e) {
@@ -97,7 +93,8 @@ class StokKeluarController extends Controller
             return redirect()->back()->with('error', 'Akses ditolak');
         }
 
-        // Implementasi logika penghapusan stok keluar
+        $stokKeluar = StokKeluar::findOrFail($id);
+        $stokKeluar->delete();
         return redirect()->route('stok-keluar')->with('success', 'Stok keluar berhasil dihapus');
     }
 }

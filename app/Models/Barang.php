@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\StokMasuk;
+use App\Models\StokKeluar;
 use App\Models\Kategori;
 
 class Barang extends Model
@@ -16,7 +18,7 @@ class Barang extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
-    protected $fillable = ['kode_barang', 'nama_barang', 'deskripsi', 'kategori_id', 'stok', 'gambar'];
+    protected $fillable = ['kode_barang', 'nama_barang', 'deskripsi', 'kategori_id', 'stok_awal', 'gambar'];
 
     public function kategori()
     {
@@ -41,9 +43,9 @@ class Barang extends Model
 
     public function getStokSaatIniAttribute()
     {
-        $stok_masuk = $this->stok_masuk()->sum('jumlah');
-        $stok_keluar = $this->stok_keluar()->sum('jumlah');
-        return $this->stok_awal + $stok_masuk - $stok_keluar;
+        $stok_masuk_total = $this->stok_masuk()->sum('jumlah');
+        $stok_keluar_total = $this->stok_keluar()->sum('jumlah');
+        return $this->stok_awal + $stok_masuk_total - $stok_keluar_total;
     }
 
     public function getGambarUrlAttribute()
