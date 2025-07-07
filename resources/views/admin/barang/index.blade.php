@@ -36,7 +36,7 @@
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->deskripsi }}</td>
                             <td>{{ $barang->kategori->nama_kategori }}</td>
-                            <td>{{ $barang->stok_awal }}</td>
+                            <td>{{ $barang->stok }}</td>
                             <td class="
                                 @if ($barang->stok_saat_ini > $barang->stok_awal) text-green-600 dark:text-green-400
                                 @elseif($barang->stok_saat_ini < $barang->stok_awal)

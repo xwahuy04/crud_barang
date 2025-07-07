@@ -79,7 +79,7 @@ class StokMasukController extends Controller
             ]);
 
             $barang = Barang::find($validated['kode_barang_id']);
-            $barang->stok += $validated['jumlah'];
+            $barang->stok += $validated['jumlah']; 
             $barang->save();
 
             return redirect()->route('stok-masuk')->with('success', 'Stok masuk berhasil dicatat');
@@ -96,9 +96,8 @@ class StokMasukController extends Controller
 
         $stokMasuk = StokMasuk::findOrFail($id);
         $barang = Barang::find($stokMasuk->kode_barang_id);
-
-        $barang->stok -= $stokMasuk->jumlah;
-        $barang->save();
+$barang->stok -= $stokMasuk->jumlah;
+$barang->save();
         $stokMasuk->delete();
 
         return redirect()->route('stok-masuk')->with('success', 'Stok masuk berhasil dihapus');

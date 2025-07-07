@@ -158,7 +158,8 @@ public function update(Request $request, $kode_barang)
         'deskripsi' => 'nullable|string|max:1000',
         'kategori_id' => 'required|exists:kategori,id',
         'stok' => 'required|integer',
-        'gambar' => 'nullable|string' 
+        'stok_awal' => 'required|integer',
+        'gambar' => 'nullable|string'
     ]);
 
     try {
