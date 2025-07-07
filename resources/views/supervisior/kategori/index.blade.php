@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
     <div class="row mb-4">
         <div class="col-12">
             <h1 class="mb-1">Daftar Kategori</h1>
@@ -14,15 +13,15 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="bg-light">
-                        <tr>
-                            <th>#</th>
+                        <tr class="text-center">
+                            <th>No</th>
                             <th>Nama Kategori</th>
                             <th>Jumlah Barang</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($kategori as $index => $item)
-                        <tr>
+                        <tr class="text-center">
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $item->nama_kategori }}</td>
                             <td class="text-center">{{ $item->barang_count }}</td>
@@ -33,5 +32,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

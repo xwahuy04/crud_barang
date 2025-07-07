@@ -37,6 +37,9 @@
                         <a href="{{ route('supervisor.laporan') }}" class="btn btn-primary">
                             <i class="ti ti-report-analytics me-1"></i> Lihat Laporan
                         </a>
+                        <a href="{{ route('supervisor.riwayat-stok') }}" class="btn btn-primary">
+                            <i class="ti ti-report-analytics me-1"></i> Lihat Riwayat Stok
+                        </a>
                     </div>
                 </div>
             </div>

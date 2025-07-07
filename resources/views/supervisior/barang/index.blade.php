@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+
     <div class="row mb-4">
         <div class="col-12">
             <h1 class="mb-1">Daftar Barang</h1>
@@ -14,24 +14,31 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="bg-light">
-                        <tr>
-                            <th>#</th>
+                        <tr class="text-center">
+                            <th>Gambar</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
                             <th>Kategori</th>
-                            <th>Stok</th>
+                            <th>Stok Awal</th>
+                            <th>Stok Saat Ini</th>
                             <th>Deskripsi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($barangs as $index => $barang)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
+                        <tr class="text-center">
+                            <td>
+                                <img src="{{ $barang->gambar_url }}" alt="{{ $barang->nama_barang }}" class="img-thumbnail"
+                                    style="max-width: 60px; max-height: 60px;">
+                            </td>
                             <td>{{ $barang->kode_barang }}</td>
                             <td>{{ $barang->nama_barang }}</td>
                             <td>{{ $barang->kategori->nama_kategori }}</td>
-                            <td class="text-center">{{ $barang->stok }}</td>
-                            <td>{{ Str::limit($barang->deskripsi, 50) }}</td>
+                            <td>{{ $barang->stok_awal }}</td>
+                            <td>
+                                {{ $barang->stok_saat_ini }}
+                            </td>
+                            <td>{{ $barang->deskripsi }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -39,5 +46,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

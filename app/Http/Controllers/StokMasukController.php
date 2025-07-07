@@ -12,7 +12,7 @@ class StokMasukController extends Controller
     public function index(Request $request)
     {
         $query = StokMasuk::with(['barang'])
-            ->orderBy('tanggal_masuk', 'desc');
+            ->orderBy('created_at', 'desc');
 
         // Filter pencarian
         if ($request->has('search')) {

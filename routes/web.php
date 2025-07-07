@@ -59,9 +59,9 @@ Route::middleware(['isLoggedIn', 'adminRedirect'])->prefix('admin')->group(funct
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');
     Route::get('/riwayat-stok', [RiwayatStokController::class, 'index'])->name('riwayat-stok');
 
+    Route::get('/riwayat-stok/export', [RiwayatStokController::class, 'export'])->name('riwayat-stok.export');
 
-
-});
+    });
 
 Route::middleware(['isLoggedIn', 'supervisorCheck'])->prefix('supervisor')->group(function () {
     Route::get('/', [SupervisiorController::class, 'index'])->name('supervisor.dashboard');
@@ -72,6 +72,8 @@ Route::middleware(['isLoggedIn', 'supervisorCheck'])->prefix('supervisor')->grou
     Route::get('/stok-masuk', [StokMasukController::class, 'index'])->name('supervisor.stok-masuk');
     Route::get('/stok-keluar', [StokKeluarController::class, 'index'])->name('supervisor.stok-keluar');
     Route::get('/laporan', [LaporanController::class, 'index'])->name('supervisor.laporan');
+    Route::get('/riwayat-stok', [RiwayatStokController::class, 'index'])->name('supervisor.riwayat-stok');
+    Route::get('/riwayat-stok/export', [RiwayatStokController::class, 'export'])->name('supervisor.riwayat-stok.export');
 });
 
 

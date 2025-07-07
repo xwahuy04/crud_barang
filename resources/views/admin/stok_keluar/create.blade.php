@@ -59,14 +59,8 @@
                                         <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-
-
-
                             </div>
                         </div>
-
-
 
                         <div class="mb-4">
                             <label for="keterangan" class="form-label fw-semibold">Keterangan</label>

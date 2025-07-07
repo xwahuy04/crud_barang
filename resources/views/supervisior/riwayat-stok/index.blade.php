@@ -5,13 +5,13 @@
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h2 class="mb-0">Riwayat Stok Barang</h2>
-            <a href="{{ route('riwayat-stok.export', request()->query()) }}" class="btn btn-primary">
+            <a href="{{ route('supervisor.riwayat-stok.export', request()->query()) }}" class="btn btn-primary">
                 <i class="ti ti-file-spreadsheet me-2"></i> Export Excel
             </a>
         </div>
 
         <div class="card-body">
-            <form method="GET" action="{{ route('riwayat-stok') }}">
+            <form method="GET" action="{{ route('supervisor.riwayat-stok') }}">
                 <div class="row">
                     <div class="col-md-3">
                         <label>Barang</label>

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\StokKeluar;
 use Illuminate\Support\Facades\Session;
 use App\Models\Barang;
+use Carbon\Carbon;
 
 class StokKeluarController extends Controller
 {
@@ -66,6 +67,8 @@ class StokKeluarController extends Controller
         ]);
 
         try {
+
+            $barang = Barang::where('kode_barang', $validated['kode_barang_id'])->first();
             if ($barang->getStokSaatIniAttribute() < $validated['jumlah']) {
             return back()->with('error', 'Stok tidak mencukupi! Stok tersedia: ' . $barang->getStokSaatIniAttribute());
             }
