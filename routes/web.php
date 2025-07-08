@@ -37,7 +37,6 @@ Route::middleware(['isLoggedIn', 'adminRedirect'])->prefix('admin')->group(funct
     Route::get('/barang/edit/{kode_barang}', [BarangController::class, 'edit'])->name('barang.edit');
     Route::put('/barang/update/{kode_barang}', [BarangController::class, 'update'])->name('barang.update');
     Route::post('/barang/upload-temp', [BarangController::class, 'uploadTemp'])->name('barang.upload-temp');
-    // Route::delete('/barang/delete-temp', [BarangController::class, 'deleteTemp'])->name('barang.delete-temp');
     Route::delete('/barang/destroy/{kode_barang}', [BarangController::class, 'destroy'])
     ->name('barang.destroy');
 
@@ -65,8 +64,6 @@ Route::middleware(['isLoggedIn', 'adminRedirect'])->prefix('admin')->group(funct
 
 Route::middleware(['isLoggedIn', 'supervisorCheck'])->prefix('supervisor')->group(function () {
     Route::get('/', [SupervisiorController::class, 'index'])->name('supervisor.dashboard');
-
-    // Read-only routes
     Route::get('/kategori', [KategoriController::class, 'index'])->name('supervisor.kategori');
     Route::get('/barang', [BarangController::class, 'index'])->name('supervisor.barang');
     Route::get('/stok-masuk', [StokMasukController::class, 'index'])->name('supervisor.stok-masuk');
@@ -77,6 +74,6 @@ Route::middleware(['isLoggedIn', 'supervisorCheck'])->prefix('supervisor')->grou
 });
 
 
- Route::get('/login', [LoginController::class, 'showLoginForm']);
+Route::get('/login', [LoginController::class, 'showLoginForm']);
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

@@ -9,11 +9,12 @@
                 + Tambah Stok Keluar
             </a>
         </div>
+        @include('layouts.partials.error-message')
 
         <div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
 
             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-                <form action="{{ route('stok-masuk') }}" method="GET" class="flex flex-col md:flex-row gap-4 items-center">
+                <form action="{{ route('stok-keluar') }}" method="GET" class="flex flex-col md:flex-row gap-4 items-center">
                     <!-- Search Input -->
                     <div class="flex-1 w-full md:w-auto">
                         <input type="text" name="search" placeholder="Cari barang atau kode..."
@@ -39,14 +40,14 @@
 
                     <!-- Filter Button -->
                     <button type="submit"
-                        class="w-full md:w-auto px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700 transition-colors dark:bg-blue-700 dark:hover:bg-blue-800">
+                        class="btn btn-primary">
                         Filter
                     </button>
 
                     <!-- Reset Button -->
                     @if (request()->has('search') || request()->has('start_date') || request()->has('end_date'))
-                        <a href="{{ route('stok-masuk') }}"
-                            class="w-full md:w-auto px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500">
+                        <a href="{{ route('stok-keluar') }}"
+                            class="btn btn-secondary">
                             Reset
                         </a>
                     @endif
@@ -73,7 +74,7 @@
                                 <td>
                                     {{ $item->barang->nama_barang }} ({{ $item->kode_barang_id }})
                                 </td>
-                                <td>-{{ $item->jumlah }}</td>
+                                <td>{{ $item->jumlah }}</td>
                                 <td>{{ $item->tanggal_keluar->format('d/m/Y') }}</td>
                                 <td>{{ $item->keterangan ?? '-' }}</td>
                                 {{-- <td>{{ $item->user->name }}</td> --}}

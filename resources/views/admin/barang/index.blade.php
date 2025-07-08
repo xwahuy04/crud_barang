@@ -10,6 +10,8 @@
             </a>
         </div>
 
+        @include('layouts.partials.error-message')
+
         <div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
             <table class="table table-striped">
                 <thead>
@@ -34,7 +36,7 @@
                             </td>
                             <td>{{ $barang->kode_barang }}</td>
                             <td>{{ $barang->nama_barang }}</td>
-                            <td>{{ $barang->deskripsi }}</td>
+                            <td>{{ $barang->deskripsi ?? '-' }}</td>
                             <td>{{ $barang->kategori->nama_kategori }}</td>
                             <td>{{ $barang->stok_awal }}</td>
                             <td>

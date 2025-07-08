@@ -10,6 +10,8 @@
             </a>
         </div>
 
+        @include('layouts.partials.error-message')
+
         <div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
             <table class="table table-striped">
             <thead>
@@ -35,7 +37,7 @@
                                         </form>
                         </td>
                     </tr>
-               
+
                 @endforeach
             </tbody>
         </table>

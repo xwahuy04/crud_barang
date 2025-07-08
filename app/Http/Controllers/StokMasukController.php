@@ -15,26 +15,24 @@ class StokMasukController extends Controller
             ->orderBy('created_at', 'desc');
 
         // Filter pencarian
-        if ($request->has('search')) {
+        $query->when($request->filled('search'), function ($q) use ($request) {
             $search = $request->input('search');
-            $query->whereHas('barang', function($q) use ($search) {
-                $q->where('nama_barang', 'like', "%$search%")
-                  ->orWhere('kode_barang', 'like', "%$search%");
+            $q->whereHas('barang', function ($subq) use ($search) {
+                $subq->where('nama_barang', 'like', "%{$search}%")
+                     ->orWhere('kode_barang', 'like', "%{$search}%");
             });
-        }
-
-        // Filter tanggal
-        if ($request->has('date')) {
-            $date = Carbon::parse($request->input('date'))->format('Y-m-d');
-            $query->whereDate('tanggal_masuk', $date);
-        }
+        });
 
         // Filter rentang tanggal
-        if ($request->has('start_date') && $request->has('end_date')) {
+        $query->when($request->filled('start_date'), function ($q) use ($request) {
             $start = Carbon::parse($request->input('start_date'))->startOfDay();
+            $q->where('tanggal_masuk', '>=', $start);
+        });
+
+        $query->when($request->filled('end_date'), function ($q) use ($request) {
             $end = Carbon::parse($request->input('end_date'))->endOfDay();
-            $query->whereBetween('tanggal_masuk', [$start, $end]);
-        }
+            $q->where('tanggal_masuk', '<=', $end);
+        });
 
         $stokMasuk = $query->paginate(10);
 

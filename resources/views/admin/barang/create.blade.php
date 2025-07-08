@@ -9,7 +9,9 @@
         </div>
     </div>
 
-    <!-- Card utama dengan margin top -->
+    @include('layouts.partials.error-message')
+
+
     <div class="row mt-2">
         <div class="col-lg-8">
             <div class="card">
@@ -22,6 +24,9 @@
                             <div class="dropzone" id="imageUpload"></div>
                             <input type="hidden" name="gambar" id="uploadedFile">
                             <small class="text-muted">Format: JPEG, PNG, GIF (Max 5MB)</small>
+                            @error('gambar')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="kode_barang" class="form-label fw-semibold">Kode Barang</label>
@@ -34,7 +39,7 @@
                         <div class="mb-4">
                             <label for="nama_barang" class="form-label fw-semibold">Nama Barang</label>
                             <input type="text" name="nama_barang" class="form-control" id="nama_barang"
-                                placeholder="Masukkan nama barang" required>
+                                placeholder="Masukkan nama barang">
                             @error('nama_barang')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -49,7 +54,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="kategori_barang" class="form-label fw-semibold">Kategori Barang</label>
-                            <select name="kategori_id" class="form-select" id="kategori_barang" required>
+                            <select name="kategori_id" class="form-select" id="kategori_barang">
                                 <option value="">Pilih Kategori</option>
                                 @foreach ($kategori as $item)
                                     <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
@@ -62,7 +67,7 @@
                         <div class="mb-4">
                             <label for="stok" class="form-label fw-semibold">Stok Awal</label>
                             <input type="number" name="stok" class="form-control" id="stok"
-                                placeholder="Masukkan stok" required>
+                                placeholder="Masukkan stok">
                             @error('stok')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror

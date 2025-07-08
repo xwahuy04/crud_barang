@@ -71,7 +71,10 @@
                         <div class="mb-4">
                             <label for="stok" class="form-label fw-semibold">Stok</label>
                             <input type="number" name="stok" class="form-control" id="stok"
-                                placeholder="Masukkan stok" value="{{ $barang->stok }}" required>
+                                placeholder="Masukkan stok" value="{{ $barang->stok }}" disabled>
+                            <small class="form-text text-info">
+                                Untuk mengubah jumlah stok, silakan lakukan melalui menu Stok Masuk atau Stok Keluar.
+                            </small>
                             @error('stok')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror

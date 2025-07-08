@@ -9,12 +9,13 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = Kategori::withCount('barang')->get();
-        
+        $kategori = Kategori::withCount('barang')
+        ->orderBy('created_at', 'desc')->get();
+
         if (session('userRole') === 'supervisor') {
             return view('supervisior.kategori.index', compact('kategori'));
         }
-        
+
         return view('admin.kategori.index', compact('kategori'));
     }
 
@@ -23,7 +24,7 @@ class KategoriController extends Controller
         if (session('userRole') !== 'admin') {
             return redirect()->back()->with('error', 'Akses ditolak');
         }
-        
+
         $kategori = Kategori::all();
         return view('admin.kategori.create', compact('kategori'));
     }
@@ -50,10 +51,10 @@ class KategoriController extends Controller
         if (session('userRole') !== 'admin') {
             return redirect()->back()->with('error', 'Akses ditolak');
         }
-        
-        $kategori = Kategori::all();
-        $data = Kategori::findOrFail($id);
-        return view('admin.kategori.edit', compact('kategori', 'data'));
+
+
+        $kategori = Kategori::findOrFail($id);
+        return view('admin.kategori.edit', compact('kategori'));
     }
 
     public function update(Request $request, $id)
@@ -66,7 +67,7 @@ class KategoriController extends Controller
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
         ]);
-        
+
         $kategori->update($request->all());
         return redirect()->route('kategori')->with('success','Kategori berhasil diperbarui');
     }
@@ -76,7 +77,7 @@ class KategoriController extends Controller
         if (session('userRole') !== 'admin') {
             return redirect()->back()->with('error', 'Akses ditolak');
         }
-        
+
         $kategori = Kategori::find($id);
         $kategori->delete();
         return redirect()->route('kategori')->with('success', 'Kategori deleted successfully');
