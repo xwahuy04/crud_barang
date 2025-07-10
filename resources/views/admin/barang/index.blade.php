@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Barang')
+
 @section('content')
     <div class="container mx-auto px-4 py-6">
         <div class="flex justify-between items-center mb-6">
@@ -49,8 +51,8 @@
                                         class="btn btn-sm btn-primary">EDIT</a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                </form>
+                                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                            </form>
                             </td>
                         </tr>
                     @endforeach

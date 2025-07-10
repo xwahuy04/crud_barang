@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Laporan')
+
+
 @section('content')
 <div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-bold text-gray-800 mb-6">Laporan Pergerakan Barang</h1>
+    <h1 class="text-2xl font-bold text-gray-800 mb-10">Laporan Pergerakan Barang</h1>
 
     <!-- Container untuk Diagram -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -16,7 +19,7 @@
 
         <!-- Diagram Garis -->
         <div class="bg-white shadow rounded-lg p-4">
-            <h2 class="text-lg font-semibold mb-4">Pergerakan Harian</h2>
+            <h2 class="text-lg font-semibold mb-4">Pergerakan Harian Stok Masuk dan Keluar</h2>
             <div class="chart-container">
                 <canvas id="lineChart"></canvas>
             </div>

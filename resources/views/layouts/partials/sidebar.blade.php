@@ -73,7 +73,7 @@
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('riwayat-stok') }}" aria-expanded="false">
                             <i class="ti ti-history"></i>
-                            <span class="hide-menu">Riwayat</span>
+                            <span class="hide-menu">Riwayat Stok</span>
                         </a>
                     </li>
 

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard Admin')
+
 @section('content')
 <div class="row">
     <!-- Card Jumlah Barang Masuk -->

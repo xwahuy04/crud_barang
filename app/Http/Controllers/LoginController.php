@@ -48,9 +48,9 @@ class LoginController extends Controller
 {
     if (Session::has('loginId')) {
         Session::pull('loginId');
-        return redirect('/')->with('success', 'You have successfully logged out.');
+        return redirect('/')->with('success', 'Anda Sudah Logout');
     } else {
-        return redirect('/')->with('error', 'You are not logged in.');
+        return redirect('/')->with('error', 'Anda belum login');
 
     }
 }

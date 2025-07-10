@@ -4,8 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CRUD Barang Sederhana</title>
-<link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
+  <title>@yield('title') - {{ config('app.name') }}</title>
 <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}" />
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css">
 @yield('styles')
@@ -33,7 +32,6 @@
 
           @yield('content')
 
-            @include('layouts.partials.footer')
         </div>
       </div>
     </div>

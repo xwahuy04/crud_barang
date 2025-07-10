@@ -40,10 +40,6 @@ Route::middleware(['isLoggedIn', 'adminRedirect'])->prefix('admin')->group(funct
     Route::delete('/barang/destroy/{kode_barang}', [BarangController::class, 'destroy'])
     ->name('barang.destroy');
 
-    Route::get('/user', [AdminController::class, 'user'])->name('user');
-    Route::post('/user', [AdminController::class, 'store'])->name('user.store');
-    Route::delete('user/delete-user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
-
     Route::get('/stok-masuk', [StokMasukController::class, 'index'])->name('stok-masuk');
     Route::get('/stok-masuk/create', [StokMasukController::class, 'create'])->name('stok-masuk.create');
     Route::post('/stok-masuk/store', [StokMasukController::class, 'store'])->name('stok-masuk.store');
@@ -74,6 +70,6 @@ Route::middleware(['isLoggedIn', 'supervisorCheck'])->prefix('supervisor')->grou
 });
 
 
-Route::get('/login', [LoginController::class, 'showLoginForm']);
+Route::get('/', [LoginController::class, 'showLoginForm']);
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

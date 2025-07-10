@@ -22,7 +22,7 @@ class AuthCheck
     // return $next($request);
 
     if (!Session::has('loginId')) {
-            return redirect('/login')->with('error', 'You need to login first');
+            return redirect('/')->with('error', 'You need to login first');
         }
         return $next($request);
 }

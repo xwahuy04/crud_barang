@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Laporan Pergerakan Barang')
 
 @section('content')
 <div class="container mx-auto px-4 py-6">
@@ -13,7 +14,7 @@
                 <canvas id="barChart"></canvas>
             </div>
         </div>
-        
+
         <!-- Diagram Garis -->
         <div class="bg-white shadow rounded-lg p-4">
             <h2 class="text-lg font-semibold mb-4">Pergerakan Harian</h2>

@@ -17,7 +17,7 @@ class SupervisiorCheck
     public function handle(Request $request, Closure $next): Response
     {
         if (!Session::has('userRole') || Session::get('userRole') !== 'supervisor') {
-            return redirect('/login')->with('error', 'Anda tidak memiliki akses supervisor');
+            return redirect('/')->with('error', 'Anda tidak memiliki akses supervisor');
         }
         return $next($request);
     }

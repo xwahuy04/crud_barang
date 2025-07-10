@@ -21,7 +21,7 @@ class AdminRedirect
     // }
     // return $next($request);
      if (!Session::has('userRole') || Session::get('userRole') !== 'admin') {
-            return redirect('/login')->with('error', 'You do not have admin privileges');
+            return redirect('/')->with('error', 'You do not have admin privileges');
         }
         return $next($request);
     }
